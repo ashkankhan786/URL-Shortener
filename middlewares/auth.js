@@ -10,10 +10,16 @@ async function restricToLoggedInUserOnly(req, res, next) {
 }
 async function checkAuth(req, res, next) {
   const uid = req.cookies.uid;
+  if (!uid) {
+    req.user = null;
+  }
+  try {
+    const user = getUser(uid);
+    req.user = user;
+  } catch (error) {
+    console.log("Error at CheckAuth" + error);
+  }
 
-  const user = getUser(uid);
-
-  req.user = user;
   next();
 }
 export { restricToLoggedInUserOnly, checkAuth };
