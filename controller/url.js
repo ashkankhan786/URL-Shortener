@@ -9,8 +9,9 @@ async function handleGetUrlShortId(req, res) {
     shortID: shortID,
     redirectUrl: body.Url,
     visits: [],
+    createdBy: req.user._id,
   });
-  const urls = await Url.find({});
+  const urls = await Url.find({ createdBy: req.user._id });
   res.render("home", {
     Url: urls,
   });

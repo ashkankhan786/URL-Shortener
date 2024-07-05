@@ -53,12 +53,14 @@
           <th>S.No.</th>
           <th>URL</th>
           <th>Short ID</th>
+          <th>Clicks</th>
         </tr>
         <% locals.Url.forEach((element, index) => { %>
         <tr>
           <td><%=index +1 %></td>
           <td><%= element.redirectUrl %></td>
           <td><%= element.shortID %></td>
+          <td><%= element.visits.length %></td>
         </tr>
         <% }) %>
       </table>
